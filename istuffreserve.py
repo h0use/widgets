@@ -36,14 +36,17 @@ chosenStores = {
 
 # Set which SKUs you want
 chosenSKUs = {
+    # 'MN962B/A': '7 128GB Jet Black',
+    # 'MN922B/A': '7 128GB Black',
+    # 'MN932B/A': '7 128GB Silver',
     'MN4V2B/A': '7 Plus 128GB Jet Black',
     'MN4M2B/A': '7 Plus 128GB Black',
-    #'MN4P2B/A': '7 Plus 128GB Silver'
+    # 'MN4P2B/A': '7 Plus 128GB Silver'
     }
 
 # Pulls the JSON from the server
 def getData():
-    resp = requests.get(url=availabilityURL''', proxies=proxyDict''')
+    resp = requests.get(url=availabilityURL) #, proxies=proxyDict)
     return json.loads(resp.content)
 
 # Now for the fun bit
@@ -54,7 +57,8 @@ while foundStock == False:
     # Check if the availability file is up yet
     siteUp = False
     while siteUp == False:
-        if data == '{ }':
+        if len(data.keys()) == 0:
+            print time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime()) + ' - No data found, waiting 1 seconds before trying again'
             time.sleep(1)
             data = getData()
         else:
@@ -74,6 +78,7 @@ while foundStock == False:
                                 print '        Found ' + data[store][SKU]
                                 # Generate a URL to take you straight to it
                                 url = reserveURL + '&store=' + chosenStore + '&partNumber=' + urllib.quote_plus(chosenSKU)
+                                print url
                                 # Open that in your default browser
                                 webbrowser.open(url)
                                 # foundStock = True
