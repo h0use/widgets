@@ -15,4 +15,4 @@ def setup(hass, config):
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', text)
 
-    return true
+    return True
