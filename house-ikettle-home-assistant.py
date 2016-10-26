@@ -59,8 +59,6 @@ class iKettle(host):
     BUTTON_ON = '4' # Select On button
     BUTTON_OFF = '0' # Turn off
 
-    host = '127.0.0.1'
-
     def __init__(self):
         self.host = host
 
