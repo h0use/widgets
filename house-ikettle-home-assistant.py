@@ -28,7 +28,7 @@ def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
     host = config[DOMAIN].get('host', '127.0.0.1')
 
-    _LOGGER.info("test")
+    _LOGGER.error("Host: " + host)
 
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
