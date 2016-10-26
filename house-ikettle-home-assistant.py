@@ -12,6 +12,7 @@ def setup(hass, config):
     host = config[DOMAIN].get('host', '127.0.0.1')
 
     ikettle = iKettle()
+    ikettle.set_host(host)
 
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
@@ -43,7 +44,7 @@ def setup(hass, config):
 
     return True
 
-class iKettle(host):
+class iKettle():
     TCP_PORT = 2000
     BUFFER_SIZE = 10
     INITIATE = b"HELLOKETTLE\n"
@@ -59,7 +60,9 @@ class iKettle(host):
     BUTTON_ON = '4' # Select On button
     BUTTON_OFF = '0' # Turn off
 
-    def __init__(self):
+    host = '127.0.0.1'
+
+    def set_host(self, host):
         self.host = host
 
     def _initiate(self):
