@@ -37,7 +37,7 @@ def setup(hass, config):
 
     return True
 
-def initiate(self, host):
+def initiate(host):
     # Open a connection to the kettle
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, TCP_PORT))
