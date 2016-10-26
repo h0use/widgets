@@ -29,11 +29,11 @@ def setup(hass, config):
     s = initiate(host)
 
     # Send some commands to prove this works
-    s.send( (SET_STRING + BUTTON_ON + '\n').encode() )
+    s.send( button_code(BUTTON_ON) )
     time.sleep(1)
-    s.send( (SET_STRING + BUTTON_95 + '\n').encode() )
+    s.send( button_code(BUTTON_95) )
     time.sleep(1)
-    s.send( (SET_STRING + BUTTON_OFF + '\n').encode() )
+    s.send( button_code(BUTTON_OFF) )
 
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
@@ -47,3 +47,6 @@ def initiate(host):
     s.send(INITIATE)
 
     return s
+
+def button_code(button):
+    return (SET_STRING + button + '\n').encode()
