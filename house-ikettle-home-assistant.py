@@ -12,13 +12,13 @@ BUFFER_SIZE = 10
 INITIATE = b"HELLOKETTLE\n"
 
 BUTTON_100 = b'set sys output 0x80\n' # Select 100C button
-BUTTON_95 = b'set sys output 0x2' # Select 95C button
-BUTTON_80 = b'set sys output 0x4000' # Select 80C button
-BUTTON_65 = b'set sys output 0x200' # Select 65C button
-BUTTON_WARM = b'set sys output 0x8' # Select Warm button
-BUTTON_WARM_5 = b'set sys output 0x8005' # Warm option is 5 mins
-BUTTON_ON = b'set sys output 0x4' # Select On button
-BUTTON_OFF = b'set sys output 0x0' # Turn off
+BUTTON_95 = b'set sys output 0x2\n' # Select 95C button
+BUTTON_80 = b'set sys output 0x4000\n' # Select 80C button
+BUTTON_65 = b'set sys output 0x200\n' # Select 65C button
+BUTTON_WARM = b'set sys output 0x8\n' # Select Warm button
+BUTTON_WARM_5 = b'set sys output 0x8005\n' # Warm option is 5 mins
+BUTTON_ON = b'set sys output 0x4\n' # Select On button
+BUTTON_OFF = b'set sys output 0x0\n' # Turn off
 
 def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
