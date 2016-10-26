@@ -75,16 +75,16 @@ class iKettle():
         s.send(INITIATE)
         return s
 
-    def button_code(button):
+    def _button_code(button):
         return (SET_STRING + button + '\n').encode()
 
-    def send_message(host, message):
+    def _send_message(host, message):
         s = initiate(host)
         s.send(message)
         s.close()
 
     def press_button_on(self):
-        self.send_message(self.host, button_code(BUTTON_ON))
+        send_message(self.host, button_code(BUTTON_ON))
 
     def press_button_off(self):
         send_message(self.host, button_code(BUTTON_OFF))
