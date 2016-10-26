@@ -40,9 +40,21 @@ def setup(hass, config):
     def press_button_100(call):
         s.send( button_code(BUTTON_100) )
 
+    def press_button_95(call):
+        s.send( button_code(BUTTON_95) )
+
+    def press_button_80(call):
+        s.send( button_code(BUTTON_80) )
+
+    def press_button_65(call):
+        s.send( button_code(BUTTON_65) )
+
     hass.services.register(DOMAIN, 'press_button_on', press_button_on)
     hass.services.register(DOMAIN, 'press_button_off', press_button_off)
     hass.services.register(DOMAIN, 'press_button_100', press_button_100)
+    hass.services.register(DOMAIN, 'press_button_95', press_button_95)
+    hass.services.register(DOMAIN, 'press_button_80', press_button_80)
+    hass.services.register(DOMAIN, 'press_button_65', press_button_65)
 
     return True
 
