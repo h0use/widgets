@@ -31,12 +31,12 @@ def setup(hass, config):
 
     hass.services.register(DOMAIN, 'press_button_on', press_button_on)
 
-    return True
-
     def press_button_on(call):
         __LOGGER.error("iKettle found at: " + host)
         s = initiate(host)
         s.send( button_code(BUTTON_ON) )
+
+    return True
 
 def initiate(host):
     # Open a connection to the kettle
