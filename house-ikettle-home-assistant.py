@@ -59,6 +59,7 @@ class iKettle():
 
         # Open a connection to the kettle
         TCP_PORT = 2000
+        INITIATE = b"HELLOKETTLE\n"
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((self.host, TCP_PORT))
         s.send(INITIATE)
@@ -69,7 +70,6 @@ class iKettle():
         return (SET_STRING + button + '\n').encode()
 
     def _send_message(self, message):
-        INITIATE = b"HELLOKETTLE\n"
         s = self._initiate()
         s.send(message)
         s.close()
