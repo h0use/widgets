@@ -64,7 +64,7 @@ class iKettle():
         s.send(INITIATE)
         return s
 
-    def _button_code(self, button):
+    def _button_code(button):
         SET_STRING = 'set sys output 0x'
         return (SET_STRING + button + '\n').encode()
 
