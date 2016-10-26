@@ -84,7 +84,7 @@ class iKettle():
         s.close()
 
     def press_button_on(self):
-        send_message(self.host, button_code(BUTTON_ON))
+        self.send_message(self.host, button_code(BUTTON_ON))
 
     def press_button_off(self):
         send_message(self.host, button_code(BUTTON_OFF))
