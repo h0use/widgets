@@ -29,25 +29,23 @@ def setup(hass, config):
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
 
-    s = initiate(host)
-
     def press_button_on(call):
-        s.send( button_code(BUTTON_ON) )
+        send_message(host, button_code(BUTTON_ON))
 
     def press_button_off(call):
-        s.send( button_code(BUTTON_OFF) )
+        send_message(host, button_code(BUTTON_OFF))
 
     def press_button_100(call):
-        s.send( button_code(BUTTON_100) )
+        send_message(host, button_code(BUTTON_100))
 
     def press_button_95(call):
-        s.send( button_code(BUTTON_95) )
+        send_message(host, button_code(BUTTON_95))
 
     def press_button_80(call):
-        s.send( button_code(BUTTON_80) )
+        send_message(host, button_code(BUTTON_80))
 
     def press_button_65(call):
-        s.send( button_code(BUTTON_65) )
+        send_message(host, button_code(BUTTON_65))
 
     hass.services.register(DOMAIN, 'press_button_on', press_button_on)
     hass.services.register(DOMAIN, 'press_button_off', press_button_off)
@@ -68,3 +66,8 @@ def initiate(host):
 
 def button_code(button):
     return (SET_STRING + button + '\n').encode()
+
+def send_message(host, message)
+    s = initiate(host)
+    s.send(message)
+    s.close()
