@@ -45,5 +45,6 @@ def button_code(button):
     return (SET_STRING + button + '\n').encode()
 
 def press_button_on(call):
+    host = config[DOMAIN].get('host', '127.0.0.1')
     s = initiate(host)
     s.send( button_code(BUTTON_ON) )
