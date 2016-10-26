@@ -70,7 +70,7 @@ class iKettle():
 
     def _send_message(self, message):
         INITIATE = b"HELLOKETTLE\n"
-        s = self._initiate(self.host)
+        s = self._initiate()
         s.send(message)
         s.close()
 
