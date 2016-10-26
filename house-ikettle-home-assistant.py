@@ -22,7 +22,7 @@ BUTTON_WARM_5 = '8005' # Warm option is 5 mins
 BUTTON_ON = '4' # Select On button
 BUTTON_OFF = '0' # Turn off
 
-host = ''
+host = 'test'
 
 def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
@@ -47,6 +47,5 @@ def button_code(button):
     return (SET_STRING + button + '\n').encode()
 
 def press_button_on(call):
-    _LOGGER.error("call: " + call.__repr__)
     s = initiate(host)
     s.send( button_code(BUTTON_ON) )
