@@ -28,6 +28,8 @@ def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
     host = config[DOMAIN].get('host', '127.0.0.1')
 
+    _LOGGER.info("Host: " + host)
+
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
 
@@ -47,6 +49,5 @@ def button_code(button):
     return (SET_STRING + button + '\n').encode()
 
 def press_button_on(call):
-    _LOGGER.info(host)
     s = initiate(host)
     s.send( button_code(BUTTON_ON) )
