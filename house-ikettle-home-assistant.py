@@ -9,10 +9,10 @@ DEPENDENCIES = []
 
 TCP_PORT = 2000
 BUFFER_SIZE = 10
-INITIATE = "HELLOKETTLE\n"
-COMMAND_START = "set sys output 0x4\n"
-COMMAND_95 = "set sys output 0x2\n"
-COMMAND_WARM = "set sys output 0x8\n"
+INITIATE = b"HELLOKETTLE\n"
+COMMAND_START = b"set sys output 0x4\n"
+COMMAND_95 = b"set sys output 0x2\n"
+COMMAND_WARM = b"set sys output 0x8\n"
 
 def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
@@ -21,9 +21,9 @@ def setup(hass, config):
     # Open a connection to the kettle
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, TCP_PORT))
-    s.send(bytes(INITIATE 'UTF-8'))
+    s.send(INITIATE)
     time.sleep(1)
-    s.send(bytes(TEMP, 'UTF-8'))
+    s.send(TEMP)
 
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
