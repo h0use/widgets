@@ -16,7 +16,7 @@ def setup(hass, config):
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
 
-    hass.states.set('ikettle.OnButton', True)
+    hass.states.set('ikettle.OnButton', 'on')
 
     def press_button_on(call):
         ikettle.press_button_on()
