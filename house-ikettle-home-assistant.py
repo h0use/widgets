@@ -10,6 +10,6 @@ def setup(hass, config):
     host = config[DOMAIN].get('text', 'alternative text')
 
     # States are set in the format DOMAIN.OBJECT_ID
-    hass.states.set('ikettle.iKettle', 'test')
+    hass.states.set('ikettle.iKettle', host)
 
     return True
