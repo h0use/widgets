@@ -21,9 +21,9 @@ def setup(hass, config):
     # Open a connection to the kettle
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, TCP_PORT))
-    s.send(INITIATE)
+    s.send(bytes(INITIATE))
     time.sleep(1)
-    s.send(TEMP)
+    s.send(bytes(TEMP))
 
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
