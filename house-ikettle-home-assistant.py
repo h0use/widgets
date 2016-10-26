@@ -22,8 +22,6 @@ BUTTON_WARM_5 = '8005' # Warm option is 5 mins
 BUTTON_ON = '4' # Select On button
 BUTTON_OFF = '0' # Turn off
 
-host = 'test'
-
 def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
     host = config[DOMAIN].get('host', '127.0.0.1')
@@ -35,6 +33,11 @@ def setup(hass, config):
 
     return True
 
+    def press_button_on(call):
+        __LOGGER.error("iKettle found at: " + host)
+        s = initiate(host)
+        s.send( button_code(BUTTON_ON) )
+
 def initiate(host):
     # Open a connection to the kettle
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -45,7 +48,3 @@ def initiate(host):
 
 def button_code(button):
     return (SET_STRING + button + '\n').encode()
-
-def press_button_on(call):
-    s = initiate(host)
-    s.send( button_code(BUTTON_ON) )
