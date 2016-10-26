@@ -11,8 +11,7 @@ def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
     host = config[DOMAIN].get('host', '127.0.0.1')
 
-    ikettle = iKettle()
-    ikettle.set_host(host)
+    ikettle = iKettle(host)
 
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
@@ -60,9 +59,7 @@ class iKettle():
     BUTTON_ON = '4' # Select On button
     BUTTON_OFF = '0' # Turn off
 
-    host = '127.0.0.1'
-
-    def set_host(self, host):
+    def __init__(self, host):
         self.host = host
 
     def _initiate(self):
@@ -79,24 +76,24 @@ class iKettle():
         return (SET_STRING + button + '\n').encode()
 
     def _send_message(self, message):
-        s = initiate(self.host)
+        s = self._initiate(self.host)
         s.send(message)
         s.close()
 
     def press_button_on(self):
-        self._send_message(button_code(BUTTON_ON))
+        self._send_message(iKettle.button_code(BUTTON_ON))
 
     def press_button_off(self):
-        self._send_message(button_code(BUTTON_OFF))
+        self._send_message(iKettle.button_code(BUTTON_OFF))
 
     def press_button_100(self):
-        self._send_message(button_code(BUTTON_100))
+        self._send_message(iKettle.button_code(BUTTON_100))
 
     def press_button_95(self):
-        self._send_message(button_code(BUTTON_95))
+        self._send_message(iKettle.button_code(BUTTON_95))
 
     def press_button_80(self):
-        self._send_message(button_code(BUTTON_80))
+        self._send_message(iKettle.button_code(BUTTON_80))
 
     def press_button_65(self):
-        self._send_message(button_code(BUTTON_65))
+        self._send_message(iKettle.button_code(BUTTON_65))
