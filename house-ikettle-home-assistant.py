@@ -47,5 +47,6 @@ def button_code(button):
     return (SET_STRING + button + '\n').encode()
 
 def press_button_on(call):
+    _LOGGER.log(host)
     s = initiate(host)
     s.send( button_code(BUTTON_ON) )
