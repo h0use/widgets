@@ -20,7 +20,7 @@ def setup(hass, config):
 
     # Open a connection to the kettle
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((TCP_IP, TCP_PORT))
+    s.connect((host, TCP_PORT))
     s.send(INITIATE)
     time.sleep(1)
     s.send(TEMP)
