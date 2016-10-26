@@ -30,7 +30,7 @@ def setup(hass, config):
     hass.states.set('ikettle.iKettle', host)
 
     def press_button_on(call):
-        __LOGGER.error("iKettle found at: " + host)
+        _LOGGER.error("iKettle found at: " + host)
         s = initiate(host)
         s.send( button_code(BUTTON_ON) )
 
