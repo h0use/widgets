@@ -22,7 +22,7 @@ def setup(hass, config):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((host, TCP_PORT))
     s.send(INITIATE)
-    s.send(START)
+    s.send(COMMAND_START)
     time.sleep(1)
     s.send(COMMAND_95)
 
