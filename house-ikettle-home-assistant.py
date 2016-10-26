@@ -16,6 +16,8 @@ def setup(hass, config):
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
 
+    hass.states.set('ikettle.OnButton', True)
+
     def press_button_on(call):
         ikettle.press_button_on()
 
@@ -49,7 +51,7 @@ class iKettle():
 
     BUTTON_WARM = '8' # Select Warm button
     BUTTON_WARM_5 = '8005' # Warm option is 5 mins
-    
+
     def __init__(self, host):
         self.host = host
 
