@@ -30,6 +30,7 @@ def setup(hass, config):
     s.send(BUTTON_ON)
     time.sleep(1)
     s.send(BUTTON_95)
+    time.sleep(1)
     s.send(BUTTON_OFF)
 
     # States are set in the format DOMAIN.OBJECT_ID
