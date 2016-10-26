@@ -67,7 +67,7 @@ def initiate(host):
 def button_code(button):
     return (SET_STRING + button + '\n').encode()
 
-def send_message(host, message)
+def send_message(host, message):
     s = initiate(host)
     s.send(message)
     s.close()
