@@ -29,12 +29,20 @@ def setup(hass, config):
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
 
+    s = initiate(host)
+
     def press_button_on(call):
-        _LOGGER.error("iKettle found at: " + host)
-        s = initiate(host)
         s.send( button_code(BUTTON_ON) )
 
+    def press_button_off(call):
+        s.send( button_code(BUTTON_OFF) )
+
+    def press_button_100(call):
+        s.send( button_code(BUTTON_100) )
+
     hass.services.register(DOMAIN, 'press_button_on', press_button_on)
+    hass.services.register(DOMAIN, 'press_button_off', press_button_off)
+    hass.services.register(DOMAIN, 'press_button_100', press_button_100)
 
     return True
 
