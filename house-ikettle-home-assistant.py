@@ -24,16 +24,6 @@ BUTTON_OFF = '0' # Turn off
 
 def setup(hass, config):
     # Get the host from the configuration. Use DEFAULT_TEXT if no name is provided
-    host = config[DOMAIN].get('host', '127.0.0.1')
-
-    s = initiate(host)
-
-    # Send some commands to prove this works
-    #s.send( button_code(BUTTON_ON) )
-    #time.sleep(1)
-    #s.send( button_code(BUTTON_95) )
-    #time.sleep(1)
-    #s.send( button_code(BUTTON_OFF) )
 
     # States are set in the format DOMAIN.OBJECT_ID
     hass.states.set('ikettle.iKettle', host)
@@ -53,5 +43,7 @@ def initiate(host):
 def button_code(button):
     return (SET_STRING + button + '\n').encode()
 
-def press_button_on(s):
+def press_button_on():
+    host = config[DOMAIN].get('host', '127.0.0.1')
+    s = initiate(host)
     s.send( button_code(BUTTON_ON) )
