@@ -23,12 +23,12 @@ def setup_platform(hass, config, add_devices, discover_info=None):
 class iKettle(SwitchDevice):
 
     def __init__(self, hass, ip_address):
-        from ikettle_api import iKettle
+        import ikettle_api
 
         self._hass = hass
         self._ip_address = ip_address
         self._state = False
-        self._ikettle = iKettle(ip_address)
+        self._ikettle = ikettle_api.iKettle(ip_address)
 
     @property
     def is_on(self):
