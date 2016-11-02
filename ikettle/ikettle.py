@@ -34,6 +34,5 @@ class iKettle(SwitchDevice):
     def is_on(self):
         return self._state
 
-    @property
     def turn_on(self):
         self._ikettle.press_button_on()
