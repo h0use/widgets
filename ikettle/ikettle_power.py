@@ -4,17 +4,18 @@ import subprocess as sp
 
 import voluptuous as vol
 
-from homeassistant.components.switch import (SwitchDevice, PLATFORM_SCHEMA)
+from homeassistant.components.switch import SwitchDevice, PLATFORM_SCHEMA
+from homeassistant.const import CONF_HOST
 import homeassistant.helpers.config_validation as cv
 
-CONF_IP_ADDRESS = 'ip_address'
-
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
-    vol.Required(CONF_IP_ADDRESS): cv.string
+    vol.Required(CONF_HOST): cv.string
 })
 
+_LOGGER = logging.getLogger(__name__)
+
 def setup_platform(hass, config, add_devices, discover_info=None):
-    ip_address = config.get(CONF_IP_ADDRESS)
+    ip_address = config.get(CONF_HOST)
 
     add_devices([ikettle_power(hass, ip_address)])
 
@@ -34,3 +35,6 @@ class ikettle_power(SwitchDevice):
 
     def turn_on(self):
         self._ikettle.press_button_on()
+
+    def update(self):
+        self._state = False
