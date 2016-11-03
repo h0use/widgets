@@ -8,7 +8,7 @@ from homeassistant.components.switch import SwitchDevice, PLATFORM_SCHEMA
 from homeassistant.const import CONF_HOST
 import homeassistant.helpers.config_validation as cv
 
-#REQUIREMENTS = ['ikettle_api']
+REQUIREMENTS = ['ikettle_api']
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_HOST): cv.string
