@@ -16,7 +16,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 
 _LOGGER = logging.getLogger(__name__)
 
-def setup_platform(hass, config, add_devices):
+def setup_platform(hass, config, add_devices, discovery_info=None):
     ip_address = config.get(CONF_HOST)
 
     add_devices([ikettle_power(hass, ip_address)])
