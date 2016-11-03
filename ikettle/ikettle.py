@@ -50,7 +50,7 @@ class ikettle_power(SwitchDevice):
         return self._state
 
     def update(self):
-        self._ikettle.get_state()
+        self._ikettle.get_state('On')
 
 
 class iKettle():
@@ -66,6 +66,15 @@ class iKettle():
     BUTTON_95 = '2' # Select 95C button
     BUTTON_80 = '4000' # Select 80C button
     BUTTON_65 = '200' # Select 65C button
+
+    # First is the button code, second is complementary to status code
+    BUTTONS = {
+        '100': [0x80, 0x20],
+        '95': [0x2, 0x10],
+        '80': [0x4000, 0x8],
+        '65': [0x200, 0x4],
+        'On': [0x4, 0x1]
+    }
 
 
     def __init__(self, host):
@@ -94,10 +103,15 @@ class iKettle():
         s.close()
         return reply
 
-    def get_state(self):
-        lines = self._send_message('get sys status\n'.encode())
-        for line in lines:
-            _LOGGER.error('Line received: ' + str(line))
+    def get_state(self, button):
+        data = self._send_message('get sys status\n'.encode())
+        if (data.startswith("sys status key=")):
+            if (len(data)<16):
+                key = 0
+            else:
+                key = ord(data[15]) & 0x3f
+        state = (key & BUTTONS[button][1] != 0)
+
 
     def press_button_on(self):
         self._send_message(iKettle._button_code(self.BUTTON_ON))
