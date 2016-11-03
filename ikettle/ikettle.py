@@ -50,7 +50,7 @@ class ikettle_power(SwitchDevice):
         return self._state
 
     def update(self):
-        self._ikettle.get_state('On')
+        #self._ikettle.get_state('On')
 
 
 class iKettle():
@@ -104,7 +104,6 @@ class iKettle():
         return reply
 
     def get_state(self, button):
-        _LOGGER.error("Host: " + str(self.host))
         data = self._send_message('get sys status\n'.encode())
         if (data.startswith("sys status key=")):
             if (len(data)<16):
