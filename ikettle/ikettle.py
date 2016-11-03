@@ -104,6 +104,7 @@ class iKettle():
         return reply
 
     def get_state(self, button):
+        _LOGGER.error("Host: " + str(self.host))
         data = self._send_message('get sys status\n'.encode())
         if (data.startswith("sys status key=")):
             if (len(data)<16):
