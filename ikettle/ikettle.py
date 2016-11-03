@@ -96,7 +96,7 @@ class iKettle():
 
     def get_state(self):
         lines = self._send_message('get sys status\n'.encode())
-        for line in lines
+        for line in lines:
             _LOGGER.error('Line received: ' + line)
 
     def press_button_on(self):
