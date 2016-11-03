@@ -33,6 +33,10 @@ class ikettle_power(SwitchDevice):
         self.update()
 
     @property
+    def name(self):
+        return 'iKettle On/Off'
+
+    @property
     def is_on(self):
         return self._state
 
