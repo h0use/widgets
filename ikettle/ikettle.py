@@ -34,7 +34,7 @@ class ikettle_power(SwitchDevice):
 
     @property
     def name(self):
-        return 'iKettle On/Off'
+        return 'On/Off'
 
     @property
     def is_on(self):
