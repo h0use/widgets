@@ -50,7 +50,7 @@ class ikettle_power(SwitchDevice):
         return self._state
 
     def update(self):
-        self._state = self._ikettle.get_state('On')
+        self._state = False #self._ikettle.get_state('On')
 
 class iKettle():
 
