@@ -6,9 +6,11 @@ import json, requests, urlparse, urllib, webbrowser, time
 waitTime = 30
 
 # The URL to pull availability JSON from
-availabilityURL = 'https://reserve.cdn-apple.com/GB/en_GB/reserve/iPhone/availability.json'
+# availabilityURL = 'https://reserve.cdn-apple.com/GB/en_GB/reserve/iPhone/availability.json'
+availabilityURL = 'https://reserve-prime.apple.com/GB/en_GB/reserve/iPhoneX/availability.json'
 # The URL to send the browser to if it finds stock
-reserveURL = 'https://reserve.cdn-apple.com/GB/en_GB/reserve/iPhone/availability?channel=1&iPP=E'
+# reserveURL = 'https://reserve.cdn-apple.com/GB/en_GB/reserve/iPhone/availability?channel=1&iPP=E'
+reserveURL = 'https://reserve-prime.apple.com/GB/en_GB/reserve/iPhoneX/availability?channel=1&iPP=E'
 
 # If you're behind a proxy, set it here
 proxyDict = {
@@ -36,11 +38,12 @@ chosenStores = {
 
 # Set which SKUs you want
 chosenSKUs = {
+    'MQAF2B/A': 'iPhone X 256GB Space Grey',
     # 'MN962B/A': '7 128GB Jet Black',
     # 'MN922B/A': '7 128GB Black',
     # 'MN932B/A': '7 128GB Silver',
-    'MN4V2B/A': '7 Plus 128GB Jet Black',
-    'MN4M2B/A': '7 Plus 128GB Black',
+    # 'MN4V2B/A': '7 Plus 128GB Jet Black',
+    # 'MN4M2B/A': '7 Plus 128GB Black',
     # 'MN4P2B/A': '7 Plus 128GB Silver'
     }
 
