@@ -3,7 +3,7 @@ import json, requests, urlparse, urllib, webbrowser, time
 ''' Dr House's Crappy iThingymajig Stock Finder '''
 
 # Seconds to wait between checking
-waitTime = 30
+waitTime = 10
 
 # The URL to pull availability JSON from
 # availabilityURL = 'https://reserve.cdn-apple.com/GB/en_GB/reserve/iPhone/availability.json'
@@ -39,12 +39,6 @@ chosenStores = {
 # Set which SKUs you want
 chosenSKUs = {
     'MQAF2B/A': 'iPhone X 256GB Space Grey',
-    # 'MN962B/A': '7 128GB Jet Black',
-    # 'MN922B/A': '7 128GB Black',
-    # 'MN932B/A': '7 128GB Silver',
-    # 'MN4V2B/A': '7 Plus 128GB Jet Black',
-    # 'MN4M2B/A': '7 Plus 128GB Black',
-    # 'MN4P2B/A': '7 Plus 128GB Silver'
     }
 
 # Pulls the JSON from the server
@@ -69,16 +63,16 @@ while foundStock == False:
 
     # Do the needful
     for chosenStore in chosenStores:
-        for store in data:
+        for store in data['stores']:
             if store == chosenStore:
                 print 'Checking ' + chosenStores[chosenStore]
                 for chosenSKU in chosenSKUs:
-                    for SKU in data[store]:
+                    for SKU in data['stores'][store]:
                         if SKU == chosenSKU:
                             print '    ' + 'Checking ' + chosenSKUs[chosenSKU]
-                            if data[store][SKU] in ('UNLOCKED', 'ALL'):
+                            if data['stores'][store][SKU]['availability']['contract'] == False:
                                 # Awesome, we found one
-                                print '        Found ' + data[store][SKU]
+                                print '        Found ' + str( data['stores'][store][SKU]['availability'] )
                                 # Generate a URL to take you straight to it
                                 url = reserveURL + '&store=' + chosenStore + '&partNumber=' + urllib.quote_plus(chosenSKU)
                                 print url
